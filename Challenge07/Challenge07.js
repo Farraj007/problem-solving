@@ -105,6 +105,7 @@ const objLat = (obj) => {
 const cvFormatter = (arr) => {
     
     // write your code here
+    let cvFormatter = arr.firstName()+arr.lastName()
 };
 
 // 3) ---------------------
