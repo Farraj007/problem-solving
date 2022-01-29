@@ -8,20 +8,20 @@
 //      lastName: 'Saleh',
 //      age: 67,
 //      hobby: 'Gaming and Sleeping'
-//   
+//
 //     }
-    // function Intro (firstName,lastName,age,hobby){
-    //     this.firstName = firstName;
-    //     this.lastName = lastName;
-    //     this.age = age; 
-    //     this.hobby = hobby
-    
-    // }
-    // Intro.prototype = function (){
-    //     let hi = 'my name is'+this.firstName + this.lastName+" I am "+ this.age+"YO, "+"and I love "+this.hobby
-    //     return hi
-    // }
-    
+// function Intro (firstName,lastName,age,hobby){
+//     this.firstName = firstName;
+//     this.lastName = lastName;
+//     this.age = age;
+//     this.hobby = hobby
+
+// }
+// Intro.prototype = function (){
+//     let hi = 'my name is'+this.firstName + this.lastName+" I am "+ this.age+"YO, "+"and I love "+this.hobby
+//     return hi
+// }
+
 //   ===>
 
 //   'my name is Jaber Saleh I am 67 YO, and I love Gaming and Sleeping.'
@@ -33,14 +33,22 @@
 // ------------------------
 
 const objLat = (obj) => {
-    let first= obj.firstName.charAt(0).toUpperCase() + obj.firstName.slice(1) 
-    let last= obj.lastName.charAt(0).toUpperCase() + obj.lastName.slice(1)
+  let first = obj.firstName.charAt(0).toUpperCase() + obj.firstName.slice(1);
+  let last = obj.lastName.charAt(0).toUpperCase() + obj.lastName.slice(1);
 
-        let hi = 'my name is '+first+" "+ last +" I am "+ obj.age+" YO, "+"and I love "+obj.hobby+"."
-        return hi
-}
-
-
+  let hi =
+    "my name is " +
+    first +
+    " " +
+    last +
+    " I am " +
+    obj.age +
+    " YO, " +
+    "and I love " +
+    obj.hobby +
+    ".";
+  return hi;
+};
 
 // 2) ---------------------
 //
@@ -103,9 +111,27 @@ const objLat = (obj) => {
 
 // ------------------------
 const cvFormatter = (arr) => {
-    
-    // write your code here
-    let cvFormatter = arr.firstName()+arr.lastName()
+  let arrLength = arr.length;
+  let newArr = [];
+  for (let i = 0; i < arrLength; i++) {
+    if (arr[i].yearsOfExperience > 1) {
+      let newObj = {};
+      let firstN = "";
+      let lastN = "";
+      if (arr[i].firstName != null) {
+        firstN = arr[i].firstName;
+      }
+      if (arr[i].lastName != null) {
+        lastN = " " + arr[i].lastName;
+      }
+      newObj["fullName"] = firstN + lastN;
+      newObj["tech"] = arr[i].tech;
+      newArr.push(newObj);
+    }
+  }
+  return newArr;
+
+  // write your code here
 };
 
 // 3) ---------------------
@@ -129,7 +155,40 @@ const cvFormatter = (arr) => {
 
 // ------------------------
 const applicationsStatics = (arr) => {
-    // write your code here
+    let result = {
+        python_Devs: 0,
+        javaScript_Devs: 0,
+        dotNet_Devs: 0,
+        java_Devs: 0,
+        totalApplicants: 0,
+        rejectedApplicants: 0,
+      };
+    
+      function isItMt(check) {
+        return check == null || check == ' ';
+      }
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i].yearsOfExperience < 1) {
+          result.rejectedApplicants++;
+        } else if (isItMt(arr[i].firstName) || isItMt(arr[i].lastName)) {
+          result.rejectedApplicants++;
+        }
+      }
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i].tech == 'JS') {
+          result.javaScript_Devs++;
+        } else if (arr[i].tech == 'Java') {
+          result.java_Devs++;
+        } else if (arr[i].tech == 'Python') {
+          result.python_Devs++;
+        } else if (arr[i].tech == '.Net') {
+          result.dotNet_Devs++;
+        }
+      }
+      result.totalApplicants = arr.length;
+
+      return result;
+  // write your code here
 };
 
 // 4) ---------------------
@@ -142,119 +201,111 @@ const applicationsStatics = (arr) => {
 //  EX:
 
 let data = {
-    SchoolName: "David Academy",
-    Capacity: 1000,
-    grades: [
+  SchoolName: "David Academy",
+  Capacity: 1000,
+  grades: [
+    {
+      grade: "First",
+      numberOFClasses: 3,
+      classes: [
         {
-            grade: "First",
-            numberOFClasses: 3,
-            classes: [
-                {
-                    avg: 0,
-                    classNumber: "01",
-                    classScores: [
-                        89, 87, 45, 48, 89, 65, 21, 54, 78, 62, 51, 54, 50, 49
-                    ]
-                },
-                {
-                    avg: 0,
-                    classNumber: "02",
-                    classScores: [
-                        87, 54, 95, 45, 41, 51, 25, 63, 58, 47, 64, 51, 98, 100
-                    ]
-                },
-                {
-                    avg: 0,
-                    classNumber: "03",
-                    classScores: [
-                        74, 85, 20, 51, 59, 58, 62, 71, 74, 99, 84, 71, 38, 70
-                    ]
-                },
-            ]
+          avg: 0,
+          classNumber: "01",
+          classScores: [89, 87, 45, 48, 89, 65, 21, 54, 78, 62, 51, 54, 50, 49],
         },
         {
-            grade: "Second",
-            numberOFClasses: 2,
-            classes: [
-                {
-                    avg: 0,
-                    classNumber: "01",
-                    classScores: [
-                        71, 82, 86, 3, 1, 52, 91, 84, 44, 68, 64, 23, 80, 60,
-                    ]
-                },
-                {
-                    avg: 0,
-                    classNumber: "02",
-                    classScores: [
-                        86, 39, 71, 17, 61, 76, 60, 54, 42, 65, 49, 75, 96, 70
-                    ]
-                },
-            ]
+          avg: 0,
+          classNumber: "02",
+          classScores: [
+            87, 54, 95, 45, 41, 51, 25, 63, 58, 47, 64, 51, 98, 100,
+          ],
         },
         {
-            grade: "Third",
-            numberOFClasses: 2,
-            classes: [
-                {
-                    avg: 0,
-                    classNumber: "01",
-                    classScores: [
-                        11, 12, 28, 78, 57, 3, 54, 72, 14, 19, 88, 74, 68, 58
-                    ]
-                },
-                {
-                    avg: 0,
-                    classNumber: "02",
-                    classScores: [
-                        62, 8, 35, 43, 96, 9, 97, 73, 4, 32, 18, 81, 70, 42
-                    ]
-                },
-            ]
+          avg: 0,
+          classNumber: "03",
+          classScores: [74, 85, 20, 51, 59, 58, 62, 71, 74, 99, 84, 71, 38, 70],
+        },
+      ],
+    },
+    {
+      grade: "Second",
+      numberOFClasses: 2,
+      classes: [
+        {
+          avg: 0,
+          classNumber: "01",
+          classScores: [71, 82, 86, 3, 1, 52, 91, 84, 44, 68, 64, 23, 80, 60],
         },
         {
-            grade: "Forth",
-            numberOFClasses: 4,
-            classes: [
-                {
-                    avg: 0,
-                    classNumber: "01",
-                    classScores: [
-                        63, 71, 93, 87, 83, 85, 67, 49, 62, 45, 38, 48, 58, 52
-                    ]
-                },
-                {
-                    avg: 0,
-                    classNumber: "02",
-                    classScores: [
-                        100, 45, 70, 75, 87, 63, 39, 46, 54, 68, 74, 96, 52, 49
-                    ]
-                },
-                {
-                    avg: 0,
-                    classNumber: "03",
-                    classScores: [
-                        97, 54, 80, 95, 69, 31, 88, 84, 50, 81, 67, 34, 41, 87
-                    ]
-                },
-                {
-                    avg: 0,
-                    classNumber: "04",
-                    classScores: [
-                        64, 96, 66, 38, 78, 58, 43, 100, 34, 56, 82, 53, 89, 72
-                    ]
-                },
-            ]
+          avg: 0,
+          classNumber: "02",
+          classScores: [86, 39, 71, 17, 61, 76, 60, 54, 42, 65, 49, 75, 96, 70],
         },
-    ],
+      ],
+    },
+    {
+      grade: "Third",
+      numberOFClasses: 2,
+      classes: [
+        {
+          avg: 0,
+          classNumber: "01",
+          classScores: [11, 12, 28, 78, 57, 3, 54, 72, 14, 19, 88, 74, 68, 58],
+        },
+        {
+          avg: 0,
+          classNumber: "02",
+          classScores: [62, 8, 35, 43, 96, 9, 97, 73, 4, 32, 18, 81, 70, 42],
+        },
+      ],
+    },
+    {
+      grade: "Forth",
+      numberOFClasses: 4,
+      classes: [
+        {
+          avg: 0,
+          classNumber: "01",
+          classScores: [63, 71, 93, 87, 83, 85, 67, 49, 62, 45, 38, 48, 58, 52],
+        },
+        {
+          avg: 0,
+          classNumber: "02",
+          classScores: [
+            100, 45, 70, 75, 87, 63, 39, 46, 54, 68, 74, 96, 52, 49,
+          ],
+        },
+        {
+          avg: 0,
+          classNumber: "03",
+          classScores: [97, 54, 80, 95, 69, 31, 88, 84, 50, 81, 67, 34, 41, 87],
+        },
+        {
+          avg: 0,
+          classNumber: "04",
+          classScores: [
+            64, 96, 66, 38, 78, 58, 43, 100, 34, 56, 82, 53, 89, 72,
+          ],
+        },
+      ],
+    },
+  ],
 };
 
 //  Note that:
 //  1- This is not the exact data you will be getting every time and the solution should be dynamic
-//  2- You need to round the average to the nearest lower number 
+//  2- You need to round the average to the nearest lower number
 
 const classesAvg = (data) => {
-    // write your code here
+  const average = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
+  for (let grade = 0; grade < data.grades.length; grade++) {
+    for (let classs = 0; classs < data.grades[grade].classes.length; classs++) {
+      let ave = average(data.grades[grade].classes[classs].classScores);
+      data.grades[grade].classes[classs].avg = Math.floor(ave);
+    }
+  }
+  return data;
+  // write your code here
 };
 
 module.exports = { objLat, cvFormatter, applicationsStatics, classesAvg };
