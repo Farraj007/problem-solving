@@ -58,4 +58,4 @@ const sumNums = (arr)=>{
     return array;
 }
 
- module.exports = {findMax , sumNums ,reverseArray };
+//  module.exports = {findMax , sumNums ,reverseArray };
