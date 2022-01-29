@@ -27,6 +27,12 @@
 // -------------------------------------------------------------------------------------------------------
 
 const customerAndAge = (obj) => {
+  let solution1 = [];
+  for (const name in obj) {
+      let str = `Customer Name :${name} , Age :${obj[name]}`;
+      solution1.push(str); 
+  }
+  return solution1;
   // write your code here
 };
 
@@ -54,6 +60,12 @@ const customerAndAge = (obj) => {
 // -------------------------------------------------------------------------------------------------------
 
 const getEntries = (obj) => {
+  let solution2 = [];
+  for (let [key, value] of Object.entries(obj)) {
+      let str = `${key}: ${value}`;
+      solution2.push(str); 
+  }
+  return solution2;
   // write your code here
 };
 
@@ -95,7 +107,12 @@ const courses = [
 const getInfo = (arr) => {
   let coursesName = [];
   let studentsName = [];
-  // write your code here
+  for (const courseObj of arr) {
+    coursesName.push(courseObj.course);
+    for (const studentStr in courseObj.Students) {
+        studentsName.push(studentStr);
+    }
+}
 
   return { coursesName, studentsName };
 };
@@ -119,7 +136,23 @@ const getInfo = (arr) => {
 //  ------------------------------------------------------------------------------------------------------
 
 const getStudents = (arr) => {
-  // write your code here
+  function Result(name, course) {
+    this.Student = name;
+    this.course = course;
+  }
+  let studentsInfo = [];
+  // using for of
+  for (const allStudents of arr) {
+    let newObj = {};
+    for (const courseObj of courses) {
+      if (courseObj.Students.includes(allStudents)) {
+        newObj['Student'] = allStudents;
+        newObj['course'] = courseObj.course;
+      }
+    }
+    studentsInfo.push(newObj);
+  }
+  return studentsInfo;
 
 };
 
