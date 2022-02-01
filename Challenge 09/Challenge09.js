@@ -17,7 +17,8 @@
 
 const arrInc = (arr) => {
     let result = [];
-    // write your code here
+     arr.forEach(a=> {result.push(a+10)}
+     )
     return result;
 }
 
@@ -31,6 +32,9 @@ const arrInc = (arr) => {
 // 
 // ------------------------
 const roundDecimals = (arr) => {
+    let rounding=[]
+    arr.forEach(b=>{rounding.push(Math.round(b))})
+    return rounding
     // write your code here
 }
 
@@ -99,6 +103,12 @@ const roundDecimals = (arr) => {
 
 // ------------------------
 const employeesBonus = (arr) => {
+   
+    arr.map(c=>{
+        if (c.workHours > 8){c.salary =parseInt(c.salary)+100+'$'}
+        else {c.salary= parseInt(c.salary)+50+'$' }
+    })
+    return arr
     // write your code here
 }
 
@@ -117,7 +127,20 @@ const employeesBonus = (arr) => {
 // ==> 200
 // ------------------------
 const mostExpensive = (budget, mouseArray, keyBoardArray) => {
-    // write your code here
-}
+    let sum;
+  let max = 0;
+  mouseArray.forEach((mouse) => {
+    keyBoardArray.forEach((key) => {
+      sum = mouse + key;
+      if (sum <= budget) {
+        if (sum >= max) {
+          max = sum;
+        }
+      }
+    });
+  });
+  return max;
+};
+    
 
 module.exports = { arrInc, roundDecimals, employeesBonus, mostExpensive };
